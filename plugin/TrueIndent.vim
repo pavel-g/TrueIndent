@@ -1,3 +1,6 @@
+" Author:  Gnedov Pavel
+" License: GPLv3
+
 if !has('python')
     echo "Error: Required vim compiled with +python"
     finish
