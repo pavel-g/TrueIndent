@@ -17,8 +17,8 @@ imap <C-d> <ESC>:call SetTrueIndent(-1)<CR>i
 
 " ===============================
 
-function! SetTrueIndentInit()
-python << EOF
+python << endpython
+
 import vim
 import re
 
@@ -47,8 +47,8 @@ def InsertIndents( firstLine, lastLine, count, etMode, tabSize ):
 		if not( regexp.match(line) ):
 			line = indent + line
 			vim.current.buffer[lineNumber] = line
-EOF
-endfunction
+
+endpython
 
 " ===============================
 
@@ -91,7 +91,6 @@ endfunction
 function! SetPlusIndent( firstLine, lastLine ) range
 silent! call SetTrueIndentInit()
 python << EOF
-vim.command("silent! call SetTrueIndentInit()")
 try:
 
 	firstLine  = vim.eval("a:firstLine")
@@ -119,7 +118,6 @@ endfunction
 function! SetMinusIndent( firstLine, lastLine ) range
 silent! call SetTrueIndentInit()
 python << EOF
-vim.command("silent! call SetTrueIndentInit()")
 try:
 
 	firstLine  = vim.eval("a:firstLine")
