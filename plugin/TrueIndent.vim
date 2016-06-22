@@ -12,7 +12,7 @@ imap <C-d> <ESC>:call SetTrueIndent(-1)<CR>i
 
 " ===============================
 
-python << endpython
+python3 << endpython
 
 import vim
 import re
@@ -49,7 +49,7 @@ endpython
 
 function! SetTrueIndent(count) range
 silent! call SetTrueIndentInit()
-python << EOF
+python3 << EOF
 vim.command("silent! call SetTrueIndentInit()")
 try:
 
@@ -66,7 +66,7 @@ try:
 		DeleteIndents( firstLine, lastLine, abs(count), etMode, tabSize )
 
 
-except Exception, e:
+except Exception as e:
 	print e
 
 EOF
@@ -85,7 +85,7 @@ endfunction
 
 function! SetPlusIndent( firstLine, lastLine ) range
 silent! call SetTrueIndentInit()
-python << EOF
+python3 << EOF
 try:
 
 	firstLine  = vim.eval("a:firstLine")
@@ -98,7 +98,7 @@ try:
 	InsertIndents( firstLine, lastLine, count, etMode, tabSize )
 	
 
-except Exception, e:
+except Exception as e:
 	print e
 
 EOF
@@ -112,7 +112,7 @@ endfunction
 
 function! SetMinusIndent( firstLine, lastLine ) range
 silent! call SetTrueIndentInit()
-python << EOF
+python3 << EOF
 try:
 
 	firstLine  = vim.eval("a:firstLine")
@@ -124,7 +124,7 @@ try:
 
 	DeleteIndents( firstLine, lastLine, abs(count), etMode, tabSize )
 
-except Exception, e:
+except Exception as e:
 	print e
 
 EOF
